@@ -28,29 +28,101 @@ namespace ColossusFileManager.WebApi.Controllers
 
         [HttpPost("/CreateFolder")]
         public async Task<ApiResponse> CreateFolder(string newFolderPath)
-        {            
-            throw new NotImplementedException();
+        {
+            var response = new ApiResponse();
+
+            try
+            {
+
+                var errors = await _fileManagerService.CreateNewFolder(newFolderPath);
+
+                if (errors.Any())
+                {
+                    response.Errors = errors;
+                    response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                }
+
+            } 
+            catch (Exception ex)
+            {
+                _logger.LogCritical(ex, "CreateFolder");
+                response.Errors.Add("Exception", ex.Message);
+                response.StatusCode = System.Net.HttpStatusCode.InternalServerError;
+            }
+
+            return response;
         }
 
 
         [HttpGet("/CreateFile")]
         public async Task<ApiResponse> CreateFile(string folderPath, string fileName)
         {
-            throw new NotImplementedException();
+            var response = new ApiResponse();
+
+            try
+            {
+                var errors = await _fileManagerService.CreateNewFile(folderPath, fileName);
+
+                if (errors.Any())
+                {
+                    response.Errors = errors;
+                    response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogCritical(ex, "CreateFile");
+                response.Errors.Add("Exception", ex.Message);
+                response.StatusCode = System.Net.HttpStatusCode.InternalServerError;
+            }
+
+            return response;
         }
 
 
         [HttpGet("/ListStructure")]
         public async Task<ApiResponse<List<CbFolder>>> ListStructure(string folderPath = null)
         {
-            throw new NotImplementedException();
+            var response = new ApiResponse<List<CbFolder>>();
+
+            try
+            {
+                var result = await _fileManagerService.ListStructure(folderPath);
+
+                if (result != null)
+                    response.Data = result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogCritical(ex, "ListStructure");
+                response.Errors.Add("Exception", ex.Message);
+                response.StatusCode = System.Net.HttpStatusCode.InternalServerError;
+            }
+
+            return response;
         }
 
 
         [HttpGet("/FindFile")]
         public async Task<ApiResponse<List<CbFile>>> FindFile(string searchTerm, string folderPath = null)
         {
-            throw new NotImplementedException();
+            var response = new ApiResponse<List<CbFile>>();
+
+            try
+            {
+                var result = await _fileManagerService.FindFile(searchTerm, folderPath);
+
+                if (result != null)
+                    response.Data = result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogCritical(ex, "FindFile");
+                response.Errors.Add("Exception", ex.Message);
+                response.StatusCode = System.Net.HttpStatusCode.InternalServerError;
+            }
+
+            return response;
         }
     }
 }

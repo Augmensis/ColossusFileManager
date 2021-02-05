@@ -23,11 +23,13 @@ namespace ColossusFileManager.Shared.Models
 
     public class ApiResponse<T> : ApiResponse
     {
+        public ApiResponse() : base()
+        {
+        }
 
-        public ApiResponse(T data)
+        public ApiResponse(T data) : base()
         {
             Data = data;
-            StatusCode = HttpStatusCode.OK;
         }
 
         public ApiResponse(T data, HttpStatusCode statusCode)

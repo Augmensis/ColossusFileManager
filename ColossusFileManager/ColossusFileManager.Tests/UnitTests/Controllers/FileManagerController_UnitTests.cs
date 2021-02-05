@@ -108,7 +108,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
         #region CreateFolder
 
         [Test]
-        public async void CreateFolder_When_FolderNotExists_Returns_NotNull()
+        public async Task CreateFolder_When_FolderNotExists_Returns_NotNull()
         {
             var response = await _FileManagerController.CreateFolder("notexists");
 
@@ -116,7 +116,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
         }
 
         [Test]
-        public async void CreateFolder_When_FolderNotExists_Returns_OK()
+        public async Task CreateFolder_When_FolderNotExists_Returns_OK()
         {
             var response = await _FileManagerController.CreateFolder("notexists");
 
@@ -124,7 +124,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
         }
 
         [Test]
-        public async void CreateFolder_When_FolderNotExists_Returns_NoErrors()
+        public async Task CreateFolder_When_FolderNotExists_Returns_NoErrors()
         {
             var response = await _FileManagerController.CreateFolder("notexists");
 
@@ -133,7 +133,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
 
 
         [Test]
-        public async void CreateFolder_When_FolderExists_Returns_Errors()
+        public async Task CreateFolder_When_FolderExists_Returns_Errors()
         {
             var response = await _FileManagerController.CreateFolder("exists");
 
@@ -142,7 +142,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
 
 
         [Test]
-        public async void CreateFolder_When_FolderNotExists_Returns_Conflict()
+        public async Task CreateFolder_When_FolderNotExists_Returns_Conflict()
         {
             var response = await _FileManagerController.CreateFolder("notexists");
 
@@ -156,7 +156,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
         #region CreateFile
 
         [Test]
-        public async void CreateFile_When_FileNotExists_Returns_NotNull()
+        public async Task CreateFile_When_FileNotExists_Returns_NotNull()
         {
             var response = await _FileManagerController.CreateFolder("notexists");
 
@@ -164,7 +164,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
         }
 
         [Test]
-        public async void CreateFile_When_FileNotExists_Returns_OK()
+        public async Task CreateFile_When_FileNotExists_Returns_OK()
         {
             var response = await _FileManagerController.CreateFolder("notexists");
 
@@ -172,7 +172,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
         }
 
         [Test]
-        public async void CreateFile_When_FileNotExists_Returns_NoErrors()
+        public async Task CreateFile_When_FileNotExists_Returns_NoErrors()
         {
             var response = await _FileManagerController.CreateFolder("notexists");
 
@@ -181,7 +181,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
 
 
         [Test]
-        public async void CreateFile_When_FileExists_Returns_NotNull()
+        public async Task CreateFile_When_FileExists_Returns_NotNull()
         {
             var response = await _FileManagerController.CreateFolder("notexists");
 
@@ -189,7 +189,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
         }
 
         [Test]
-        public async void CreateFile_When_FileExists_Returns_OK()
+        public async Task CreateFile_When_FileExists_Returns_OK()
         {
             var response = await _FileManagerController.CreateFolder("notexists");
 
@@ -197,7 +197,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
         }
 
         [Test]
-        public async void CreateFile_When_FileExists_Returns_NoErrors()
+        public async Task CreateFile_When_FileExists_Returns_NoErrors()
         {
             var response = await _FileManagerController.CreateFolder("notexists");
 
@@ -206,7 +206,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
 
 
         [Test]
-        public async void CreateFile_When_HasErrors_Returns_Errors()
+        public async Task CreateFile_When_HasErrors_Returns_Errors()
         {
             var response = await _FileManagerController.CreateFolder("notexists");
 
@@ -215,7 +215,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
 
 
         [Test]
-        public async void CreateFile_When_HasException_Returns_Errors()
+        public async Task CreateFile_When_HasException_Returns_Errors()
         {
             var response = await _FileManagerController.CreateFolder("notexists");
 
@@ -228,7 +228,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
         #region ListStructure
 
         [Test]
-        public async void ListStructure_When_Folder_Is_NULL_Returns_AllFolders()
+        public async Task ListStructure_When_Folder_Is_NULL_Returns_AllFolders()
         {
             var response = await _FileManagerController.ListStructure(null);
 
@@ -236,7 +236,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
         }
 
         [Test]
-        public async void ListStructure_When_Folder_Is_NULL_Returns_OK()
+        public async Task ListStructure_When_Folder_Is_NULL_Returns_OK()
         {
             var response = await _FileManagerController.ListStructure(null);
 
@@ -244,7 +244,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
         }
 
         [Test]
-        public async void ListStructure_When_Folder_Is_RootPath_Returns_AllFolders()
+        public async Task ListStructure_When_Folder_Is_RootPath_Returns_AllFolders()
         {
             var response = await _FileManagerController.ListStructure("/");
 
@@ -253,7 +253,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
 
 
         [Test]
-        public async void ListStructure_When_Folder_Is_RootPath_Returns_OK()
+        public async Task ListStructure_When_Folder_Is_RootPath_Returns_OK()
         {
             var response = await _FileManagerController.ListStructure(null);
 
@@ -263,7 +263,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
 
         [TestCase("/Foo", 3)]
         [TestCase("/Bar", 0)]
-        public async void ListStructure_When_Folder_Exists_Returns_FilteredFolders(string folder, int fileCount)
+        public async Task ListStructure_When_Folder_Exists_Returns_FilteredFolders(string folder, int fileCount)
         {
             var response = await _FileManagerController.ListStructure(folder);
 
@@ -273,7 +273,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
 
         [TestCase("/Foo")]
         [TestCase("/Bar")]
-        public async void ListStructure_When_Folder_Exists_RootPath_Returns_OK(string folder)
+        public async Task ListStructure_When_Folder_Exists_RootPath_Returns_OK(string folder)
         {
             var response = await _FileManagerController.ListStructure(folder);
 
@@ -282,7 +282,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
 
 
         [Test]
-        public async void ListStructure_When_Folder_DoesntExist_Returns_EmptyList()
+        public async Task ListStructure_When_Folder_DoesntExist_Returns_EmptyList()
         {
             var response = await _FileManagerController.ListStructure("/DoesntExist");
 
@@ -291,7 +291,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
 
 
         [Test]
-        public async void ListStructure_When_Folder_DoesntExist_RootPath_Returns_NotFound()
+        public async Task ListStructure_When_Folder_DoesntExist_RootPath_Returns_NotFound()
         {
             var response = await _FileManagerController.ListStructure("/DoesntExist");
 
@@ -304,7 +304,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
         #region FindFile
 
         [Test]
-        public async void FindFile_When_SearchTerm_Is_NULL_And_FolderPath_Is_Null_Returns_BadRequest()
+        public async Task FindFile_When_SearchTerm_Is_NULL_And_FolderPath_Is_Null_Returns_BadRequest()
         {
             var response = await _FileManagerController.FindFile(null, null);
 
@@ -312,7 +312,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
         }
 
         [Test]
-        public async void FindFile_When_SearchTerm_Is_NULL_And_FolderPath_Is_Null_Returns_Errors()
+        public async Task FindFile_When_SearchTerm_Is_NULL_And_FolderPath_Is_Null_Returns_Errors()
         {
             var response = await _FileManagerController.FindFile(null, null);
 
@@ -320,7 +320,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
         }
 
         [Test]
-        public async void FindFile_When_SearchTerm_Is_NULL_And_FolderPath_Is_Null_Returns_NoData()
+        public async Task FindFile_When_SearchTerm_Is_NULL_And_FolderPath_Is_Null_Returns_NoData()
         {
             var response = await _FileManagerController.FindFile(null, null);
 
@@ -329,7 +329,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
 
 
         [Test]
-        public async void FindFile_When_SearchTerm_Exists_Once_And_FolderPath_Is_Null_Returns_One()
+        public async Task FindFile_When_SearchTerm_Exists_Once_And_FolderPath_Is_Null_Returns_One()
         {
             var response = await _FileManagerController.FindFile("fileExistsOnce", null);
 
@@ -338,7 +338,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
 
 
         [Test]
-        public async void FindFile_When_SearchTerm_Exists_Multiple_And_FolderPath_Is_Null_Returns_Many()
+        public async Task FindFile_When_SearchTerm_Exists_Multiple_And_FolderPath_Is_Null_Returns_Many()
         {
             var response = await _FileManagerController.FindFile("fileExistsMultiple", null);
 
@@ -347,7 +347,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
 
 
         [Test]
-        public async void FindFile_When_SearchTerm_Exists_Once_And_FolderPath_Exists_Returns_One()
+        public async Task FindFile_When_SearchTerm_Exists_Once_And_FolderPath_Exists_Returns_One()
         {
             var response = await _FileManagerController.FindFile("fileExistsOnce", "pathExists");
 
@@ -355,7 +355,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
         }
 
         [Test]
-        public async void FindFile_When_SearchTerm_Exists_Multiple_And_FolderPath_Exists_Returns_Many()
+        public async Task FindFile_When_SearchTerm_Exists_Multiple_And_FolderPath_Exists_Returns_Many()
         {
             var response = await _FileManagerController.FindFile("fileExistsMultiple", "pathExists");
 
@@ -364,7 +364,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
 
 
         [Test]
-        public async void FindFile_When_SearchTerm_Exists_Once_And_FolderPath_DoesNotExist_Returns_None()
+        public async Task FindFile_When_SearchTerm_Exists_Once_And_FolderPath_DoesNotExist_Returns_None()
         {
             var response = await _FileManagerController.FindFile("fileExistsOnce", "pathDoesntExist");
 
@@ -372,7 +372,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
         }
 
         [Test]
-        public async void FindFile_When_SearchTerm_Exists_Multiple_And_FolderPath_DoesNotExist_Returns_None()
+        public async Task FindFile_When_SearchTerm_Exists_Multiple_And_FolderPath_DoesNotExist_Returns_None()
         {
             var response = await _FileManagerController.FindFile("fileExistsMultiple", "pathDoesntExist");
 
