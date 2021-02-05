@@ -22,13 +22,17 @@ cd ColossusFileManager/ColossusFileManager
 ```
 dotnet build ColossusFileManager.WebApi
 ```
+4. Run the test suite
+```
+dotnet test
+```
 
-4. Run the WebApi project
+5. Run the WebApi project
 ```
 dotnet run --project ColossusFileManager.WebApi
 ```
 
-5. In a separate console with or API client such as [Postman](https://www.postman.com/product/api-client/) (recommended) try running against some endpoints
+6. In a separate console with or API client such as [Postman](https://www.postman.com/product/api-client/) (recommended) try running against some endpoints
 
 List all folders and files recursively (See BUG comments)
 ```
@@ -60,9 +64,9 @@ Create a new File (note ampersand (&) is wrapped in quotes for some calls in pow
 curl -Method Post -Uri https://localhost:5001/CreateFile?folderpath=Test2"&"filename=demofile14.txt
 ```
 
-6. ???
+7. ???
 
-7. Profit
+8. Profit
 
 
 ## Troubleshooting
