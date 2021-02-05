@@ -9,6 +9,16 @@ namespace ColossusFileManager.Shared.Models
     [Table("cb_folders")]
     public class CbFolder
     {
+
+        public CbFolder() { }
+        public CbFolder(string folderName, string folderPath) 
+        {
+            FolderName = folderName;
+            FolderPath = folderPath;
+            DateCreated = DateTime.UtcNow;
+        }
+
+
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int Id { get; set; }
