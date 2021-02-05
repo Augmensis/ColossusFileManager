@@ -18,9 +18,9 @@ git clone https://github.com/Augmensis/ColossusFileManager.git
 cd ColossusFileManager/ColossusFileManager
 ```
 
-3. Build the WebApi project if needed
+3. Build the solution
 ```
-dotnet build ColossusFileManager.WebApi
+dotnet build
 ```
 4. Run the test suite
 ```
