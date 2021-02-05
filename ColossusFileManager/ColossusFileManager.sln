@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColossusFileManager.WebApi", "ColossusFileManager.WebApi\ColossusFileManager.WebApi.csproj", "{52170580-3D1F-4888-9CF4-72F60A125E0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColossusFileManager.WebApi", "ColossusFileManager.WebApi\ColossusFileManager.WebApi.csproj", "{52170580-3D1F-4888-9CF4-72F60A125E0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColossusFileManager.Shared", "ColossusFileManager.Shared\ColossusFileManager.Shared.csproj", "{2A7C25F0-E00D-4A48-B4A7-E6B75B6EE942}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColossusFileManager.Shared", "ColossusFileManager.Shared\ColossusFileManager.Shared.csproj", "{2A7C25F0-E00D-4A48-B4A7-E6B75B6EE942}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColossusFileManager.Tests", "ColossusFileManager.Tests\ColossusFileManager.Tests.csproj", "{1B638B3C-67FC-4231-AFE3-287A5F0D8749}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColossusFileManager.Tests", "ColossusFileManager.Tests\ColossusFileManager.Tests.csproj", "{1B638B3C-67FC-4231-AFE3-287A5F0D8749}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{2B756393-C0FA-4306-96F6-165B5487D3B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
