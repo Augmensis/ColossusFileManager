@@ -77,6 +77,35 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
                                                                                                                 }
                                                                                                 }}));
 
+            _mockFileManagerService.Setup(x => x.ListStructure("/")).Returns(Task.FromResult(new List<CbFolder> {
+                                                                                                new CbFolder { Id = 1,
+                                                                                                                FolderName = "",
+                                                                                                                FolderPath = "/",
+                                                                                                                ChildFolders = new List<CbFolder> {
+                                                                                                                    new CbFolder { Id = 2,
+                                                                                                                        FolderName = "Foo",
+                                                                                                                        FolderPath = "/Foo",
+                                                                                                                        ParentFolderId = 1,
+                                                                                                                        Files = new List<CbFile> {
+                                                                                                                            new CbFile { FileName = "Mock File 4" },
+                                                                                                                            new CbFile { FileName = "Mock File 5" },
+                                                                                                                            new CbFile { FileName = "Mock File 6" },
+                                                                                                                        }
+                                                                                                                    },
+                                                                                                                    new CbFolder { Id = 3,
+                                                                                                                        FolderName = "Bar",
+                                                                                                                        FolderPath = "/Bar",
+                                                                                                                        ParentFolderId = 1
+                                                                                                                    },
+
+                                                                                                                },
+                                                                                                                Files = new List<CbFile> {
+                                                                                                                    new CbFile { FileName = "Mock File 1" },
+                                                                                                                    new CbFile { FileName = "Mock File 2" },
+                                                                                                                    new CbFile { FileName = "Mock File 3" },
+                                                                                                                }
+                                                                                                }}));
+
             _mockFileManagerService.Setup(x => x.ListStructure("/Foo")).Returns(Task.FromResult(new List<CbFolder> {                                                                                                
                                                                                                         new CbFolder { Id = 2,
                                                                                                             FolderName = "Foo",
