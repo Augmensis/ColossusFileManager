@@ -158,7 +158,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
         [Test]
         public async Task CreateFile_When_FileNotExists_Returns_NotNull()
         {
-            var response = await _FileManagerController.CreateFolder("notexists");
+            var response = await _FileManagerController.CreateFile("folderexists", "fileDoesntExist");
 
             Assert.NotNull(response);
         }
@@ -166,7 +166,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
         [Test]
         public async Task CreateFile_When_FileNotExists_Returns_OK()
         {
-            var response = await _FileManagerController.CreateFolder("notexists");
+            var response = await _FileManagerController.CreateFile("folderexists", "fileDoesntExist");
 
             Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.OK);
         }
@@ -174,7 +174,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
         [Test]
         public async Task CreateFile_When_FileNotExists_Returns_NoErrors()
         {
-            var response = await _FileManagerController.CreateFolder("notexists");
+            var response = await _FileManagerController.CreateFile("folderexists", "fileDoesntExist");
 
             Assert.IsEmpty(response.Errors);
         }
@@ -183,7 +183,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
         [Test]
         public async Task CreateFile_When_FileExists_Returns_NotNull()
         {
-            var response = await _FileManagerController.CreateFolder("notexists");
+            var response = await _FileManagerController.CreateFile("folderexists", "fileExists");
 
             Assert.NotNull(response);
         }
@@ -191,7 +191,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
         [Test]
         public async Task CreateFile_When_FileExists_Returns_OK()
         {
-            var response = await _FileManagerController.CreateFolder("notexists");
+            var response = await _FileManagerController.CreateFile("folderexists", "fileExists");
 
             Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.OK);
         }
@@ -199,7 +199,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
         [Test]
         public async Task CreateFile_When_FileExists_Returns_NoErrors()
         {
-            var response = await _FileManagerController.CreateFolder("notexists");
+            var response = await _FileManagerController.CreateFile("folderexists", "fileExists");
 
             Assert.IsEmpty(response.Errors);
         }
@@ -208,7 +208,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
         [Test]
         public async Task CreateFile_When_HasErrors_Returns_Errors()
         {
-            var response = await _FileManagerController.CreateFolder("notexists");
+            var response = await _FileManagerController.CreateFile("error", "error");
 
             Assert.IsNotEmpty(response.Errors);
         }
@@ -217,7 +217,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
         [Test]
         public async Task CreateFile_When_HasException_Returns_Errors()
         {
-            var response = await _FileManagerController.CreateFolder("notexists");
+            var response = await _FileManagerController.CreateFile("exception", "exception");
 
             Assert.IsNotEmpty(response.Errors);
         }
