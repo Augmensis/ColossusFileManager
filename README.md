@@ -91,6 +91,12 @@ Any other major problems, just shout.
 Swagger has been enabled and is available at `https://localhost:5001/swagger/v1/swagger.json`
 Since this is a pure WebAPI, it is only available as a JSON object but can be loaded into IDEs and other builders to generate client connections automatically.
 
+
+## Answers to Questions
+5. Worst-case asymtotic complexity is likely to be `n log n` with recursion. Best case search would likely be `n`.
+
+6. Exporting hundreds of GB of data would not be ideal when used against a production database. The I/O demands would likely impact other users and degrade their user experience. A better alternative would be to ustilise some form of Data Warehousing for long-term storage of data and "cold" retrieval. Even then, the direct transfer/streaming of such a massive payload would likely fail. Converting the resulting data payload to use a download manager service, such as Torrents, might help mitigate some risk and allow for data to be transferred progressively, until the user has all the data they require.
+
 ## Closing notes
 It's taken a while to complete as I'm a bit rusty with NUnit and pure EntityFrameworkCore. However, it was some good, challenging, fun. Given more time or incentive I would investigate the recursion problems with /ListStructure further and add integration tests that spin-up and tear-down their own database connections. 
 
