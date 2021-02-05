@@ -27,28 +27,28 @@ namespace ColossusFileManager.WebApi.Controllers
 
 
         [HttpPost("/CreateFolder")]
-        public ApiResponse CreateFolder(string newFolderPath)
+        public async Task<ApiResponse> CreateFolder(string newFolderPath)
         {            
             throw new NotImplementedException();
         }
 
 
         [HttpGet("/CreateFile")]
-        public ApiResponse CreateFile(string folderPath, string fileName)
+        public async Task<ApiResponse> CreateFile(string folderPath, string fileName)
         {
             throw new NotImplementedException();
         }
 
 
         [HttpGet("/ListStructure")]
-        public ApiResponse<List<CbFolder>> ListStructure(string folderPath = null)
+        public async Task<ApiResponse<List<CbFolder>>> ListStructure(string folderPath = null)
         {
             throw new NotImplementedException();
         }
 
 
         [HttpGet("/FindFile")]
-        public ApiResponse<List<CbFile>> FindFile(string searchTerm, string folderPath = null)
+        public async Task<ApiResponse<List<CbFile>>> FindFile(string searchTerm, string folderPath = null)
         {
             throw new NotImplementedException();
         }

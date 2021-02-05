@@ -8,12 +8,13 @@ namespace ColossusFileManager.Shared.Interfaces
 {
     public interface IFileManagerService
     {
-        public Task<Dictionary<string, string>> CreateNewFolder(string newFolderPath);
+        Task<Dictionary<string, string>> CreateNewFolder(string newFolderPath);
 
-        public Task<Dictionary<string, string>> CreateNewFile(string folderPath, string newfileName);
+        Task<Dictionary<string, string>> CreateNewFile(string folderPath, string newfileName);
 
-        public Task<List<CbFolder>> ListStructure(string folderPath = null);
+        Task<List<CbFolder>> ListStructure(string folderPath = null);
 
-        public Task<List<CbFile>> FindFile(string searchTerm, string folderPath = null);
+        Task<List<CbFile>> FindFile(string searchTerm, string folderPath = null);
+
     }
 }
