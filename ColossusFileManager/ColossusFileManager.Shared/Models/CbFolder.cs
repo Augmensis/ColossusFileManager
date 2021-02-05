@@ -16,9 +16,9 @@ namespace ColossusFileManager.Shared.Models
         public int ParentFolderId { get; set; }
         public CbFolder ParentFolder { get; set; }
 
-        public List<CbFolder> ChildFolders { get; set; }
+        public List<CbFolder> ChildFolders { get; set; } = new List<CbFolder>();
 
-        public List<CbFile> Files { get; set; }
+        public List<CbFile> Files { get; set; } = new List<CbFile>();
 
 
         [Required]
