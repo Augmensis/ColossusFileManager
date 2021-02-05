@@ -140,16 +140,6 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
             Assert.IsNotEmpty(response.Errors);
         }
 
-
-        [Test]
-        public async Task CreateFolder_When_FolderNotExists_Returns_Conflict()
-        {
-            var response = await _FileManagerController.CreateFolder("notexists");
-
-            Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.Conflict);
-        }
-
-
         #endregion CreateFolder
 
 
