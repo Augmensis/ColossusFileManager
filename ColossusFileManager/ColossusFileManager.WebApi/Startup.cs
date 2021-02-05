@@ -1,3 +1,4 @@
+using ColossusFileManager.Shared.Interfaces;
 using ColossusFileManager.Shared.Models;
 using ColossusFileManager.WebApi.Services;
 using Microsoft.AspNetCore.Builder;
@@ -45,6 +46,13 @@ namespace ColossusFileManager.WebApi
                 options.EnableSensitiveDataLogging();
                 options.UseSqlite(sqliteConnection);
             }, ServiceLifetime.Transient);
+
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
+
+            // Add service(s)
+            services.AddTransient<IFileManagerService, ColossusFileManagerService>();
 
         }
 

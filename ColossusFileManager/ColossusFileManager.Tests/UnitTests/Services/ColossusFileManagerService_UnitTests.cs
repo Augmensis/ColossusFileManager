@@ -16,7 +16,6 @@ namespace ColossusFileManager.Tests.UnitTests.Services
         [SetUp]
         public void Setup()
         {
-            _fileManagerService = new ColossusFileManagerService();
         }
 
 

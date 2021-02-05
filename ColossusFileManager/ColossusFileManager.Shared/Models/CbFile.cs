@@ -37,7 +37,8 @@ namespace ColossusFileManager.Shared.Models
         
         public string FileExtension { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        // Would use db generated value on insert
+        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime DateCreated { get; set; }
 
         public DateTime? Dateupdated { get; set; }

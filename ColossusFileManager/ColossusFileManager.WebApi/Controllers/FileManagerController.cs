@@ -54,7 +54,7 @@ namespace ColossusFileManager.WebApi.Controllers
         }
 
 
-        [HttpGet("/CreateFile")]
+        [HttpPost("/CreateFile")]
         public async Task<ApiResponse> CreateFile(string folderPath, string fileName)
         {
             var response = new ApiResponse();

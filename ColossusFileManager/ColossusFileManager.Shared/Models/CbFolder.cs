@@ -23,7 +23,7 @@ namespace ColossusFileManager.Shared.Models
         [Key]
         public int Id { get; set; }
         
-        public int ParentFolderId { get; set; }
+        public int? ParentFolderId { get; set; }
         public CbFolder ParentFolder { get; set; }
 
         public List<CbFolder> ChildFolders { get; set; } = new List<CbFolder>();
@@ -36,8 +36,8 @@ namespace ColossusFileManager.Shared.Models
 
         public string FolderPath { get; set; }
 
-
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        // Would use DB generated value on insert, but running out of time to faff with Sqlite
+        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime DateCreated { get; set; }
 
         public DateTime? Dateupdated { get; set; }

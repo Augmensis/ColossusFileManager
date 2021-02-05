@@ -36,6 +36,9 @@ namespace ColossusFileManager.WebApi.Services
 
             try
             {
+                if (!folderPath.StartsWith("/"))
+                    folderPath = $"/{folderPath}";
+
                 // Check Folder Exists
                 var folderExists = _dbContext.Folders.Any(x => x.FolderPath == folderPath);
 
@@ -58,6 +61,8 @@ namespace ColossusFileManager.WebApi.Services
 
                         existingFile.Dateupdated = DateTime.UtcNow;
 
+                        _dbContext.Files.Update(existingFile);
+
                         await _dbContext.SaveChangesAsync();
                     }
                     else
@@ -68,6 +73,8 @@ namespace ColossusFileManager.WebApi.Services
                         var newFile = new CbFile(newfileName);
 
                         existingFolder.Files.Add(newFile);
+
+                        _dbContext.Folders.Update(existingFolder);
 
                         await _dbContext.SaveChangesAsync();
                     }
@@ -98,7 +105,7 @@ namespace ColossusFileManager.WebApi.Services
             try
             {
                 // Check Folder Exists
-                var folderExists = _dbContext.Folders.Any(x => x.FolderPath == newFolderPath);
+                var folderExists = _dbContext.Folders.Any(x => x.FolderPath == newFolderPath || x.FolderName == newFolderPath);
 
                 // Create folders if they don't exist
                 if (folderExists)
@@ -129,19 +136,21 @@ namespace ColossusFileManager.WebApi.Services
                         if (!folderExists)
                         {
                             currentFolder = new CbFolder(currentFolderName, currentPath);
+
+                            // If there is a parent folder, attach it to the child
+                            if (parentFolder != null)
+                                currentFolder.ParentFolder = parentFolder;
+
+                            _dbContext.Folders.Add(currentFolder);
+
+                            // Update the database
+                            await _dbContext.SaveChangesAsync();
                         }
                         else
                         {
-                            // Otherwise grab the existing matching folder
+                            // Otherwise grab the existing matching folder to use as the parent
                             currentFolder = _dbContext.Folders.First(x => x.FolderPath == currentPath);
                         }
-
-                        // If there is a parent folder, attach it to the child
-                        if (parentFolder != null)
-                            currentFolder.ParentFolder = parentFolder;
-
-                        // Update the database
-                        await _dbContext.SaveChangesAsync();
 
                         // Update the parent to the current folder
                         parentFolder = currentFolder;
@@ -190,12 +199,21 @@ namespace ColossusFileManager.WebApi.Services
         {
             if (string.IsNullOrEmpty(folderPath))
             {
-                // Send back the whole list of folders
-                return _dbContext.Folders.ToList();
+                // Send back the whole list of folders from the top level (anything wihout a parent)
+                // All parents should have complete child data appear as part of a cascade
+                return await _dbContext.Folders.AsNoTracking().Where(x => x.ParentFolder == null)
+                        .Include(x => x.Files)  
+                        .Include(x => x.ChildFolders)
+                            .ThenInclude(childFolder => childFolder.ChildFolders)
+                            .ThenInclude(childFolder => childFolder.Files)
+                        .ToListAsync();
+
+                // BUG: Can't figure out EF recursive includes for cascading relationships past one level.
+                // In real life I would raise the issue with the team to figure it out and then post on StackOverflow where appropriate
             }
 
-            // Filter the folder list by the folderPath
-            return _dbContext.Folders.Where(x => x.FolderPath == folderPath).ToList();
+            // Filter the folder list by the 
+            return _dbContext.Folders.AsNoTracking().Where(x => x.FolderPath == folderPath).Include(x => x.ChildFolders).Include(x => x.Files).ToList();
         }
 
 
