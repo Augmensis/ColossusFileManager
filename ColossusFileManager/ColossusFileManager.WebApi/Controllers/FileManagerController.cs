@@ -110,10 +110,18 @@ namespace ColossusFileManager.WebApi.Controllers
 
             try
             {
-                var result = await _fileManagerService.FindFile(searchTerm, folderPath);
+                if (string.IsNullOrEmpty(searchTerm))
+                {
+                    response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                    response.Errors.Add("Missing Parameter", "You must provide a search term");
+                }
+                else
+                {
+                    var result = await _fileManagerService.FindFile(searchTerm, folderPath);
 
-                if (result != null)
-                    response.Data = result;
+                    if (result != null)
+                        response.Data = result;
+                }
             }
             catch (Exception ex)
             {

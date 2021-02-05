@@ -314,7 +314,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
         {
             var response = await _FileManagerController.FindFile(null, null);
 
-            Assert.IsEmpty(response.Data);
+            Assert.IsNull(response.Data);
         }
 
 
