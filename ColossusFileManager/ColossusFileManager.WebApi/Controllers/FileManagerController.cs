@@ -89,8 +89,15 @@ namespace ColossusFileManager.WebApi.Controllers
             {
                 var result = await _fileManagerService.ListStructure(folderPath);
 
-                if (result != null)
+                if (result != null && result.Any())
+                {
                     response.Data = result;
+                }
+                else
+                {
+                    response.StatusCode = System.Net.HttpStatusCode.NotFound;
+                    response.Errors.Add("Not Found", "Folder path does not exist");
+                }
             }
             catch (Exception ex)
             {

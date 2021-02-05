@@ -272,11 +272,11 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
 
 
         [Test]
-        public async Task ListStructure_When_Folder_DoesntExist_Returns_EmptyList()
+        public async Task ListStructure_When_Folder_DoesntExist_Returns_Null()
         {
             var response = await _FileManagerController.ListStructure("/DoesntExist");
 
-            Assert.IsEmpty(response.Data);
+            Assert.IsNull(response.Data);
         }
 
 
@@ -285,7 +285,7 @@ namespace ColossusFileManager.Tests.UnitTests.Controllers
         {
             var response = await _FileManagerController.ListStructure("/DoesntExist");
 
-            Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.NotFound);
+            Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
         }
 
         #endregion ListStructure
